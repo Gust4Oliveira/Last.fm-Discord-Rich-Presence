@@ -21,7 +21,7 @@ Script that catch your listening status from Last.fm and shares as your discord 
 
 ### Windows, MacOS or Linux (Using Python)
 - Download and install python (During the instalation, check the option to add python to the PATH(Windows).
-- Download the [source code](https://github.com/Gust4Oliveira/Last.fm-Discord-Rich-Presence/archive/1.0.zip).
+- Download the [source code](https://github.com/Gust4Oliveira/Last.fm-Discord-Rich-Presence/archive/master.zip).
 - Create a text file named as "username.txt" in the same folder of the .py files.
 - Open the username.txt file and just insert your last.fm username inside of it, like below:
 
