@@ -1,0 +1,2 @@
+pypresence==4.0.0
+pylast==3.2.1
