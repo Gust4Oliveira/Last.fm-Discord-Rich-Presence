@@ -15,12 +15,16 @@ class LastFmUser:
         self.cooldown = cooldown
 
     def now_playing(self):
+        current_track = None
         try:
             current_track = self.user.get_now_playing()
             pass
         except pylast.WSError:
-            print("Connection problem, retrying connection in " +
+            print("Connection problem at web serice, retrying connection in " +
                   str(self.cooldown)+" seconds")
+            pass
+        except pylast.NetworkError:
+            print("The app couldn't comunicate with last.fm servers, check your internet connection!")
             pass
 
         if current_track is not None:
