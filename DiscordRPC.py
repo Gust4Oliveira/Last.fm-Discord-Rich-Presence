@@ -42,6 +42,17 @@ def disable_RPC():
     if already_disabled == False:
         RPC.clear()
         RPC.close()
-        print('Disconnected from Discord due to inactivity')
+        print('Disconnected from Discord due to inactivity on Last.fm')
         already_disabled = True
         already_enabled = False
+
+def disconnect():
+    global already_enabled
+    global already_disabled
+    if already_disabled == False:
+        RPC.clear()
+        RPC.close()
+        print('Disconnected from Discord')
+        already_disabled = True
+        already_enabled = False
+
