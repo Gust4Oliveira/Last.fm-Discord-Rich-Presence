@@ -17,7 +17,7 @@ Script that catch your listening status from Last.fm and shares as your discord 
 
 > Virus Warning Disclaimer
 >
->Recently a issue was opened to notify me that the app is been detected by Windows Defender and others 4 antivirus softwares as a virus ([#2](https://github.com/Gust4Oliveira/Last.fm-Discord-Rich-Presence/issues/2)). I sended to microsoft a false positive report, but to the app be removed from defender it will take some time. For now i recomend runing the app from the source code using python to reduce anoying notifications of virus detection or in last case allowing the app to run even beeing detected as a virus if you don't like or isn't familiar to running it from python.
+>Recently a issue was opened to notify me that the app is been detected by Windows Defender and others 8 antivirus softwares as a virus ([#2](https://github.com/Gust4Oliveira/Last.fm-Discord-Rich-Presence/issues/2)). I sended to microsoft, avira and nano-antivirus a false positive report, but to the app be removed from defender and the other apps it will take some time. For now i recomend runing the app from the source code using python to reduce anoying notifications of virus detection or in last case allowing the app to run even beeing detected as a virus if you don't like or isn't familiar to running it from python.
 >
 >Just reminding that this app isnt made to infect, steal data or collect usage informations from your computer. This problem happens because the app isnt signed with a certificate, so because isn't from a trusted source it is flaged as a virus. I find out that this issue and is pretty common from .exe aplications builded from python files using pyinstaller.
 
