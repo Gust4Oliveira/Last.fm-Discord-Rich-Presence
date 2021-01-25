@@ -26,11 +26,23 @@ class LastFmUser:
         except pylast.NetworkError:
             print("The app couldn't comunicate with last.fm servers, check your internet connection!")
             pass
+        except pylast.MalformedResponseError:
+            print("Last.fm internal server error!, retrying connection")
+            pass
 
         if current_track is not None:
             track = current_track
-            album = track.get_album()
-            time_remaining = track.get_duration()
+            try:
+                album = track.get_album()
+                time_remaining = track.get_duration()
+            except pylast.WSError:
+                print("Connection problem at web serice, retrying connection in " +
+                      str(self.cooldown)+" seconds")
+                pass
+            except pylast.NetworkError:
+                print(
+                    "The app couldn't comunicate with last.fm servers, check your internet connection!")
+                pass
             RPC.enable_RPC()
             RPC.update_Status(str(track), str(album), time_remaining)
             time.sleep(self.cooldown+8)
