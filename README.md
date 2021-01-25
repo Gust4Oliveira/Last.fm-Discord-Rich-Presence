@@ -51,6 +51,5 @@ And you are good to go, try exiting your user on windows an logging in again to 
 `python main.py`
 
 ## Knew issues and (maybe) further upgrades
-- At the moment, sometimes the song remaining time is stuck at 00:00, that happens when the Last.fm doesn't have the information of the song duration. I'll fix that on the next release.
 - a GUI and a Installer that sets it self at the startup app would be very welcome but i really don't know how to do it properly, maybe in furthers versions if worth the work and the time spent.
 - About the music album art at the discord status, well, i cound't find a way to show a picture there without using discord assets, and all aplications have a limitation to 150 assets.
