@@ -28,12 +28,20 @@ def update_Status(track, album, time_remaining):
         LastTrack = track
         trackList = track.split('-')
         time_remaining = str(time_remaining)[0:3]
-        if album != 'None':
-            RPC.update(details=trackList[1], state=album, end=float(time_remaining)+start_time,
-                   large_image='icon', large_text='Last.fm Discord Rich Presence')
+        if time_remaining != '0':
+            if album != 'None':
+                RPC.update(details=trackList[1], state=album, end=float(time_remaining)+start_time,
+                    large_image='icon', large_text='Last.fm Discord Rich Presence')
+            else:
+                RPC.update(details=trackList[1], state=trackList[0], end=float(time_remaining)+start_time,
+                    large_image='icon', large_text='Last.fm Discord Rich Presence')
         else:
-            RPC.update(details=trackList[1], state=trackList[0], end=float(time_remaining)+start_time,
-                   large_image='icon', large_text='Last.fm Discord Rich Presence')
+            if album != 'None':
+                RPC.update(details=trackList[1], state=album,
+                    large_image='icon', large_text='Last.fm Discord Rich Presence')
+            else:
+                RPC.update(details=trackList[1], state=trackList[0],
+                    large_image='icon', large_text='Last.fm Discord Rich Presence')
 
 
 def disable_RPC():
