@@ -33,11 +33,10 @@ class LastFmUser:
         if current_track is not None:
             track = current_track
             try:
+                album,time_remaining = None, 0
                 album = track.get_album()
                 time_remaining = track.get_duration()
             except pylast.WSError:
-                print("Connection problem at web serice, retrying connection in " +
-                      str(self.cooldown)+" seconds")
                 pass
             except pylast.NetworkError:
                 print(
