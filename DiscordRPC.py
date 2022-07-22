@@ -18,7 +18,7 @@ def enable_RPC():
         already_disabled = False
 
 
-def update_Status(track, title, artist, album, time_remaining):
+def update_Status(track, title, artist, album, time_remaining, username):
     global start_time, LastTrack
     if LastTrack == track:
         pass
@@ -28,20 +28,21 @@ def update_Status(track, title, artist, album, time_remaining):
         LastTrack = track
         trackArtistAlbum = artist + " - " + album
         time_remaining = str(time_remaining)[0:3]
+        lastfmProfileButton = [{"label": "View last.fm Profile", "url": str("https://www.last.fm/user/" + username)}]
         if time_remaining != '0':
             if album != 'None':
                 RPC.update(details=title, state=album, end=float(time_remaining)+start_time,
-                    large_image='icon', large_text='Last.fm Discord Rich Presence')
+                    large_image='icon', large_text='Last.fm Discord Rich Presence', buttons=lastfmProfileButton)
             else:
                 RPC.update(details=title, state=trackArtistAlbum, end=float(time_remaining)+start_time,
-                    large_image='icon', large_text='Last.fm Discord Rich Presence')
+                    large_image='icon', large_text='Last.fm Discord Rich Presence', buttons=lastfmProfileButton)
         else:
             if album != 'None':
                 RPC.update(details=title, state=album,
-                    large_image='icon', large_text='Last.fm Discord Rich Presence')
+                    large_image='icon', large_text='Last.fm Discord Rich Presence', buttons=lastfmProfileButton)
             else:
                 RPC.update(details=title, state=trackArtistAlbum,
-                    large_image='icon', large_text='Last.fm Discord Rich Presence')
+                    large_image='icon', large_text='Last.fm Discord Rich Presence', buttons=lastfmProfileButton)
 
 
 def disable_RPC():

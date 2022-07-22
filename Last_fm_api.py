@@ -45,7 +45,7 @@ class LastFmUser:
                     "The app couldn't comunicate with last.fm servers, check your internet connection!")
                 pass
             RPC.enable_RPC()
-            RPC.update_Status(str(track), str(title), str(artist), str(album), time_remaining)
+            RPC.update_Status(str(track), str(title), str(artist), str(album), time_remaining, self.username)
             time.sleep(self.cooldown+8)
         else:
             print("No song detected, checking again in " +
