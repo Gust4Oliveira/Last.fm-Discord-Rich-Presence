@@ -20,6 +20,8 @@ def enable_RPC():
 
 def update_Status(track, title, artist, album, time_remaining, username, artwork):
     global start_time, LastTrack
+    if len(title) < 2:
+        title = title+"  "
     if LastTrack == track:
         pass
     else:
