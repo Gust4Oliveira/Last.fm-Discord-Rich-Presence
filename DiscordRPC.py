@@ -41,10 +41,10 @@ def update_Status(track, title, artist, album, time_remaining, username, artwork
         else:
             if album != 'None':
                 RPC.update(details=title, state=album,
-                    large_image=artwork, large_text='Last.fm Discord Rich Presence', buttons=lastfmProfileButton)
+                    large_image=artwork, large_text=album, buttons=lastfmProfileButton)
             else:
                 RPC.update(details=title, state=trackArtistAlbum,
-                    large_image=artwork, large_text='Last.fm Discord Rich Presence', buttons=lastfmProfileButton)
+                    large_image=artwork, large_text=album, buttons=lastfmProfileButton)
 
 
 def disable_RPC():
