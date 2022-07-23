@@ -4,7 +4,7 @@ Script that catch your listening status from Last.fm and shares as your discord 
 
 **Preview:**
 
-![N|Solid](https://cdn.discordapp.com/attachments/673112689207279637/705858416207200319/unknown.png)
+![N|Solid](https://cdn.discordapp.com/attachments/864772079868837899/1000190381310349472/unknown.png)
 
 ## Dependencies
 - Pypresence
@@ -21,7 +21,7 @@ Script that catch your listening status from Last.fm and shares as your discord 
 >
 >Just reminding that this app isnt made to infect, steal data or collect usage informations from your computer. This problem happens because the app isnt signed with a certificate, so because isn't from a trusted source it is flaged as a virus. I find out that this issue and is pretty common from .exe aplications builded from python files using pyinstaller.
 
-- Download the latest [release](https://github.com/Gust4Oliveira/Last.fm-Discord-Rich-Presence/releases/tag/1.1).
+- Download the latest [release](https://github.com/Gust4Oliveira/Last.fm-Discord-Rich-Presence/releases/tag/V.1.2).
 - Extract the zip file.
 - Open the text file named as "username.txt" and edit to your last.fm username.
 - Run the .exe file.
@@ -52,4 +52,3 @@ And you are good to go, try exiting your user on windows an logging in again to 
 
 ## Knew issues and (maybe) further upgrades
 - a GUI and a Installer that sets it self at the startup app would be very welcome but i really don't know how to do it properly, maybe in furthers versions if worth the work and the time spent.
-- About the music album art at the discord status, well, i cound't find a way to show a picture there without using discord assets, and all aplications have a limitation to 150 assets.
