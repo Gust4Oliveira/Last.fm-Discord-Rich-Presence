@@ -20,7 +20,11 @@ def toggle_rpc(Icon, item):
 def exit(Icon, item):
     icon_tray.stop()
 
-directory = os.path.dirname(__file__)
+if getattr(sys, 'frozen', False):
+    directory = os.path.dirname(sys.executable)
+elif __file__:
+    directory = os.path.dirname(__file__)
+
 imageDir = os.path.join(directory, "assets/icon.png")
 
 root = tkinter.Tk()
