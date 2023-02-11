@@ -18,7 +18,7 @@ def enable_RPC():
         already_disabled = False
 
 
-def update_Status(track, title, artist, album, time_remaining, username, artwork):
+def update_Status(track, title, artist, album, time_remaining, username, artwork, buttonIsEnabled):
     global start_time, LastTrack
     if len(title) < 2:
         title = title+"  "
@@ -33,19 +33,34 @@ def update_Status(track, title, artist, album, time_remaining, username, artwork
         lastfmProfileButton = [{"label": "View Last.fm Profile", "url": str("https://www.last.fm/user/" + username)}]
         if time_remaining != '0':
             if album != 'None':
-                RPC.update(details=title, state=album, end=float(time_remaining)+start_time,
-                    large_image=artwork, large_text=album, buttons=lastfmProfileButton)
+                if buttonIsEnabled:
+                    RPC.update(details=title, state=album, end=float(time_remaining)+start_time,
+                        large_image=artwork, large_text=album, buttons=lastfmProfileButton)
+                else:
+                    RPC.update(details=title, state=album, end=float(time_remaining)+start_time,
+                        large_image=artwork, large_text=album)
             else:
-                RPC.update(details=title, state=trackArtistAlbum, end=float(time_remaining)+start_time,
-                    large_image=artwork, large_text=album, buttons=lastfmProfileButton)
+                if buttonIsEnabled:
+                    RPC.update(details=title, state=trackArtistAlbum, end=float(time_remaining)+start_time,
+                        large_image=artwork, large_text=album, buttons=lastfmProfileButton)
+                else:
+                    RPC.update(details=title, state=trackArtistAlbum, end=float(time_remaining)+start_time,
+                        large_image=artwork, large_text=album)
         else:
             if album != 'None':
-                RPC.update(details=title, state=album,
-                    large_image=artwork, large_text=album, buttons=lastfmProfileButton)
+                if buttonIsEnabled:
+                    RPC.update(details=title, state=album,
+                        large_image=artwork, large_text=album, buttons=lastfmProfileButton)
+                else:
+                    RPC.update(details=title, state=album,
+                        large_image=artwork, large_text=album)
             else:
-                RPC.update(details=title, state=trackArtistAlbum,
-                    large_image=artwork, large_text=album, buttons=lastfmProfileButton)
-
+                if buttonIsEnabled:
+                    RPC.update(details=title, state=album,
+                        large_image=artwork, large_text=album, buttons=lastfmProfileButton)
+                else:
+                    RPC.update(details=title, state=album,
+                        large_image=artwork, large_text=album)
 
 def disable_RPC():
     global already_enabled
@@ -66,4 +81,3 @@ def disconnect():
         print('Disconnected from Discord')
         already_disabled = True
         already_enabled = False
-

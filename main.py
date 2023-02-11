@@ -11,11 +11,16 @@ from Last_fm_api import LastFmUser
 import DiscordRPC
 
 rpc_state = True
+button_state = True
 
 def toggle_rpc(Icon, item):
     global rpc_state
     rpc_state = not item.checked
 
+def toggle_button(Icon, item):
+    global button_state
+    button_state = not item.checked
+    print("Last.fm profile button:", button_state)
 
 def exit(Icon, item):
     icon_tray.stop()
@@ -40,12 +45,17 @@ try:
 except FileNotFoundError as identifier:
     messagebox.showerror('Error','File "username.txt" not found!')
 
-username = f.read()
+username = f.read().rstrip()
 print("Last.fm username: "+username)
 User = LastFmUser(username, 2)
 
-menu_icon = Menu(item('User: '+username, None), item('Enable Rich Presence',
-                                                     toggle_rpc, checked=lambda item: rpc_state), Menu.SEPARATOR, item('Exit', exit))
+menu_icon = Menu(item('User: '+username, None),
+                 item('Enable Rich Presence', toggle_rpc,
+                      checked=lambda item: rpc_state), Menu.SEPARATOR,
+                 item('Enable Profile Button', toggle_button,
+                      checked=lambda item: button_state), Menu.SEPARATOR,
+                 item('Exit', exit))
+
 icon_tray = Icon('Last.fm Discord Rich Presence', icon=im,
                  title="Last.fm Discord Rich Presence", menu=menu_icon)
 
@@ -54,7 +64,7 @@ def RPCFunction(loop):
     asyncio.set_event_loop(loop)
     while True:
         if rpc_state == True:
-            User.now_playing()
+            User.now_playing(button_state)
         else:
             DiscordRPC.disconnect()
             time.sleep(2)
