@@ -14,7 +14,7 @@ class LastFmUser:
         self.user = network.get_user(username)
         self.cooldown = cooldown
 
-    def now_playing(self):
+    def now_playing(self, button_state):
         current_track = None
         try:
             current_track = self.user.get_now_playing()
@@ -46,7 +46,7 @@ class LastFmUser:
                     "The app couldn't comunicate with last.fm servers, check your internet connection!")
                 pass
             RPC.enable_RPC()
-            RPC.update_Status(str(track), str(title), str(artist), str(album), time_remaining, self.username, artwork)
+            RPC.update_Status(str(track), str(title), str(artist), str(album), time_remaining, self.username, artwork, button_state)
             time.sleep(self.cooldown+8)
         else:
             print("No song detected, checking again in " +
