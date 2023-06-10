@@ -1,6 +1,7 @@
 import sys
 import os
 import threading
+import argparse
 import asyncio
 import time
 import tkinter
@@ -9,6 +10,15 @@ from PIL import Image
 from pystray import Icon, Menu, MenuItem as item
 from Last_fm_api import LastFmUser
 import DiscordRPC
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    '-nit',
+    '--no-icon-tray',
+    action='store_true',
+    help='Disable the icon tray',
+)
+args = parser.parse_args()
 
 rpc_state = True
 button_state = True
@@ -74,5 +84,9 @@ RPCThread = threading.Thread(target=RPCFunction, args=(loop,))
 
 RPCThread.daemon = True
 RPCThread.start()
+
+if args.no_icon_tray:
+    while True:
+        time.sleep(10)
 
 icon_tray.run()
