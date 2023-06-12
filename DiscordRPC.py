@@ -65,12 +65,14 @@ def update_Status(track, title, artist, album, time_remaining, username, artwork
 def disable_RPC():
     global already_enabled
     global already_disabled
+    global LastTrack
     if already_disabled == False:
         RPC.clear()
         RPC.close()
         print('Disconnected from Discord due to inactivity on Last.fm')
         already_disabled = True
         already_enabled = False
+        LastTrack = None
 
 def disconnect():
     global already_enabled
