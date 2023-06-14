@@ -18,49 +18,30 @@ def enable_RPC():
         already_disabled = False
 
 
-def update_Status(track, title, artist, album, time_remaining, username, artwork, buttonIsEnabled):
+def update_Status(track, title, artist, time_remaining, username, artwork, buttonIsEnabled):
     global start_time, LastTrack
     if len(title) < 2:
         title = title+"  "
     if LastTrack == track:
-        pass
+        return
+
+    print("Now Playing: " + track)
+    start_time = datetime.datetime.now().timestamp()
+    LastTrack = track
+
+    time_remaining = str(time_remaining)[0:3]
+    if time_remaining == '0':
+        time_remaining = None
     else:
-        print("Now Playing: " + track)
-        start_time = datetime.datetime.now().timestamp()
-        LastTrack = track
-        trackArtistAlbum = artist + " - " + album
-        time_remaining = str(time_remaining)[0:3]
+        time_remaining = float(time_remaining) + start_time
+
+    lastfmProfileButton = None
+    if buttonIsEnabled:
         lastfmProfileButton = [{"label": "View Last.fm Profile", "url": str("https://www.last.fm/user/" + username)}]
-        if time_remaining != '0':
-            if album != 'None':
-                if buttonIsEnabled:
-                    RPC.update(details=title, state=album, end=float(time_remaining)+start_time,
-                        large_image=artwork, large_text=album, buttons=lastfmProfileButton)
-                else:
-                    RPC.update(details=title, state=album, end=float(time_remaining)+start_time,
-                        large_image=artwork, large_text=album)
-            else:
-                if buttonIsEnabled:
-                    RPC.update(details=title, state=trackArtistAlbum, end=float(time_remaining)+start_time,
-                        large_image=artwork, large_text=album, buttons=lastfmProfileButton)
-                else:
-                    RPC.update(details=title, state=trackArtistAlbum, end=float(time_remaining)+start_time,
-                        large_image=artwork, large_text=album)
-        else:
-            if album != 'None':
-                if buttonIsEnabled:
-                    RPC.update(details=title, state=album,
-                        large_image=artwork, large_text=album, buttons=lastfmProfileButton)
-                else:
-                    RPC.update(details=title, state=album,
-                        large_image=artwork, large_text=album)
-            else:
-                if buttonIsEnabled:
-                    RPC.update(details=title, state=album,
-                        large_image=artwork, large_text=album, buttons=lastfmProfileButton)
-                else:
-                    RPC.update(details=title, state=album,
-                        large_image=artwork, large_text=album)
+
+    RPC.update(details=title, state=track, end=time_remaining,
+               large_image=artwork, large_text=track, buttons=lastfmProfileButton)
+
 
 def disable_RPC():
     global already_enabled
